@@ -48,3 +48,22 @@ python predict.py \
   --output /path/to/predictions.csv
 ```
 
+
+
+## Citation
+
+If you use DistilMOS in your research or project, please cite:
+
+```bibtex
+@article{yang2026distilmos,
+  title={DistilMOS: Layer-Wise Self-Distillation For Self-Supervised Learning Model-Based MOS Prediction},
+  author={Yang, Jianing and Nakata, Wataru and Saito, Yuki and Saruwatari, Hiroshi},
+  journal={arXiv preprint arXiv:2601.13700},
+  year={2026}
+}
+```
+
+
+
+
+
