@@ -1,0 +1,7 @@
+torch
+torchaudio
+transformers
+huggingface_hub
+PyYAML
+entmax
+scipy

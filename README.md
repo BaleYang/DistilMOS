@@ -1,32 +1,50 @@
 # DistilMOS
 
-Official implementation of **DistilMOS: Layer-wise Self-distillation for Self-Supervised Learning Model-based MOS Prediction**
-📄 *Accepted at ICASSP 2026*
+Official implementation of **[DistilMOS: Layer-wise Self-distillation for Self-Supervised Learning Model-based MOS Prediction](https://arxiv.org/abs/2601.13700)**.  
 
 ## Overview
 
-DistilMOS is a self-supervised learning (SSL) based Mean Opinion Score (MOS) prediction framework that leverages **layer-wise self-distillation** to improve perceptual speech quality estimation.
+DistilMOS is a self-supervised learning (SSL) based Mean Opinion Score (MOS) prediction framework that leverages layer-wise self-distillation for robust speech quality estimation.
 
-The proposed method distills information across different layers of a pretrained SSL model, enabling more effective utilization of hierarchical representations for MOS prediction, while maintaining strong generalization across datasets and synthesis conditions.
+![figure](./assets/proposed.png)
 
-## Paper
 
-> **DistilMOS: Layer-wise Self-distillation for Self-Supervised Learning Model-based MOS Prediction**
-> *IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 2026*
+## Installation
 
-A preprint will be made available soon.
+```bash
+git clone https://github.com/BaleYang/DistilMOS.git
 
-## Code Status
+cd DistilMOS
 
-🚧 **Work in progress**
+conda create -n distilmos python=3.10 -y
+conda activate distilmos
 
-We are currently preparing the following components for public release:
+pip install -r requirements.txt
 
-* Training code
-* Inference / evaluation scripts
-* Configuration files
-* Pretrained models (where permitted)
+```
 
-The repository will be updated once the codebase is cleaned and fully documented.
+## Inference
 
+`predict.py` supports:
+- single `wav` file inference
+- directory inference (recursive, batch mode)
+- backbone selection: `wavlm`(default) or `w2v2`
+
+### Single File
+
+```bash
+python predict.py \
+  --input /path/to/audio.wav \
+  --ssl_backbone wavlm
+```
+
+### Directory (Batch)
+
+```bash
+python predict.py \
+  --input /path/to/wav_dir \
+  --ssl_backbone w2v2 \
+  --batch_size 32 \
+  --output /path/to/predictions.csv
+```
 
