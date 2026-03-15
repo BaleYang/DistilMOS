@@ -9,6 +9,7 @@ from types import SimpleNamespace
 import torch
 import torchaudio
 import yaml
+import soundfile as sf
 from huggingface_hub import hf_hub_download
 
 
@@ -80,9 +81,10 @@ def _load_model(backbone, device):
 
 
 def _load_wav(path, target_sr=TARGET_SR):
-    wav, sr = torchaudio.load(str(path))
+    wav_np, sr = sf.read(str(path), dtype="float32")
+    wav = torch.from_numpy(wav_np)
     if wav.dim() == 2:
-        wav = wav.mean(dim=0)
+        wav = wav.mean(dim=1)
     wav = wav.float()
     if sr != target_sr:
         wav = torchaudio.functional.resample(wav, sr, target_sr)
